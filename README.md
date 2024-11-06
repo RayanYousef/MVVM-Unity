@@ -3,7 +3,7 @@
 <h1 align="center">MVVM For Unity</h1>
 
 <div align="center">
-<img src="https://drive.google.com/uc?export=view&id=18wSwx1ZEblQF_x3wmxy8mev2cDtDqhA3"  height ="500" />
+<img src="https://drive.google.com/uc?export=view&id=1Zi1cX7soDvx-jkxM4jhXinFFERgwC86S"  height ="500" />
 </div>
 
 This framework provides a structured Model-View-ViewModel (MVVM) system for Unity, designed to separate your app’s data (Model), user interface (View), and business logic (ViewModel).
@@ -115,7 +115,7 @@ public class PlayerHealthView : ViewBase<StatsViewModel>
 <img src="https://drive.google.com/uc?export=view&id=1ohSnanA3sMA5oKkoyEjXkh_doIpLarEf"  height ="500" style="display: inline-block;"/>
 </div>
 
-### 2. Binding Multiple Components to the Same View
+#### 2. Binding Multiple Components to the Same View
 
 In some cases, you might want to bind multiple components to the same View. Below is an example where multiple UI elements from the same GameObject are bound to different properties of the `StatsViewModel`. This allows you to manage several visual elements at once with a single `View` class.
 
@@ -203,4 +203,4 @@ public class PlayerHealthView : ViewBase<StatsViewModel>
 > - The `HealthBarFillImage.color` and `HealthValueText.color` change based on the health percentage.
 > - The `HealthValueText.text` is bound to the player's health and max health.
 
-> **This example is included within the asset**, and you can refer to it to see how multiple components can be bound to the same View. The `HealthBar` and `PlayerHealthView` classes are provided to help you understand how to work with bindings and UI components effectively.
+**This example is included within the asset**, and you can refer to it to see how multiple components can be bound to the same View. The `HealthBar` and `PlayerHealthView` classes are provided to help you understand how to work with bindings and UI components effectively.
