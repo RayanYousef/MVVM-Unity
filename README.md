@@ -3,7 +3,7 @@
 <h1 align="center">MVVM For Unity</h1>
 
 <div align="center">
-<img src="https://drive.google.com/uc?export=view&id=1ZaXC9vltYbvy20McsXMXJOCWSJ4mBZll"  height ="500" />
+<img src="https://drive.google.com/uc?export=view&id=18wSwx1ZEblQF_x3wmxy8mev2cDtDqhA3"  height ="500" />
 </div>
 
 This framework provides a structured Model-View-ViewModel (MVVM) system for Unity, designed to separate your app’s data (Model), user interface (View), and business logic (ViewModel).
@@ -90,13 +90,10 @@ public class StatsViewModel : ViewModelBase<StatsModel>
 }
 ```
 
+
 ### Step 3: Setting Up a View
 
 To display data in Unity, create a `View` class by extending `ViewBase<TViewModel>`.
-
-In your `View` class:
-1. Bind UI components to model properties.
-2. Link the View in Unity Editor.
 
 #### 1. Binding UI Components to Model Properties
 
@@ -114,7 +111,96 @@ public class PlayerHealthView : ViewBase<StatsViewModel>
 ```
 
 > In the Unity Editor, assign the **Image** component (or the GameObject containing the **Image** component) to the corresponding field. You can then bind it by using the **component name** and **type** with `ForComponent<Type>("Component Name", ...)`. 
-<img src="https://drive.google.com/uc?export=view&id=1ohSnanA3sMA5oKkoyEjXkh_doIpLarEf"  height ="200" style="display: inline-block;"/>
-#### 2-Linking the View in Unity Editor
+<div align="center">
+<img src="https://drive.google.com/uc?export=view&id=1ohSnanA3sMA5oKkoyEjXkh_doIpLarEf"  height ="500" style="display: inline-block;"/>
+</div>
 
-*Refer to the images below* for step-by-step guidance on connecting the view components in the Unity Editor.
+### 2. Binding Multiple Components to the Same View
+
+In some cases, you might want to bind multiple components to the same View. Below is an example where multiple UI elements from the same GameObject are bound to different properties of the `StatsViewModel`. This allows you to manage several visual elements at once with a single `View` class.
+
+#### HealthBar Class
+
+First, let’s define the `HealthBar` class which holds references to the `Image` and `Text` components:
+
+```csharp
+using UnityEngine;
+using UnityEngine.UI;
+
+namespace AdorableAssets.MVVM
+{
+    public class HealthBar : MonoBehaviour
+    {
+        [SerializeField] private Image _healthBarFillImage;
+        [SerializeField] private Text _healthValueText;
+
+        public Image HealthBarFillImage  => _healthBarFillImage;
+        public Text HealthValueText  => _healthValueText; 
+    }
+}
+```
+
+> The `HealthBar` class contains serialized fields for the `Image` and `Text` components that will be linked in the Unity Editor. These fields are used in the `View` class to set up bindings between the UI and the model properties.
+
+#### PlayerHealthView Class
+
+Now, let’s set up the `PlayerHealthView` class to bind multiple components (such as the health bar fill, color, and text) to different properties of the `StatsViewModel`.
+
+```csharp
+public class PlayerHealthView : ViewBase<StatsViewModel>
+{
+    [SerializeField] private HealthBar _healthBar;
+
+    protected override void RegisterBindings()
+    {
+        // Binding health percentage to the fill amount of the HealthBar
+        BindingManager
+            .ForComponent<HealthBar>("PlayerHealthBar", healthBar => healthBar.HealthBarFillImage.fillAmount)
+            .ToProperties(EnumStatTypes.HealthPercentage.ToString())
+            .OneWay();
+
+        // Binding health percentage to the color of the HealthBar's fill image
+        BindingManager
+            .ForComponent<HealthBar>("PlayerHealthBar", healthBar => healthBar.HealthBarFillImage.color)
+            .ToProperties(EnumStatTypes.HealthPercentage.ToString())
+            .UsingExpression(value =>
+            {
+                Color colorToReturn = Color.Lerp(Color.red, Color.green, (float)value);
+                return colorToReturn;
+            })
+            .OneWay();
+
+        // Binding health percentage to the color of the Health Value Text
+        BindingManager
+            .ForComponent<HealthBar>("PlayerHealthBar", healthBar => healthBar.HealthValueText.color)
+            .ToProperties(EnumStatTypes.HealthPercentage.ToString())
+            .UsingExpression(value =>
+            {
+                Color colorToReturn = Color.Lerp(Color.black, Color.white, (float)value);
+                return colorToReturn;
+            })
+            .OneWay();
+
+        // Binding health and max health to the Health Value Text
+        BindingManager
+            .ForComponent<HealthBar>("PlayerHealthBar", healthBar => healthBar.HealthValueText.text)
+            .ToProperties(EnumStatTypes.Health.ToString(), EnumStatTypes.MaxHealth.ToString())
+            .UsingExpression(value =>
+            {
+                string valueToReturn =
+                ViewModel.Health
+                + "/"
+                + ViewModel.MaxHealth;
+                return valueToReturn;
+            })
+            .OneWay();
+    }
+}
+```
+
+> In this example, multiple UI components from the same `HealthBar` GameObject are bound to properties from the `ViewModel`:
+> - The `HealthBarFillImage.fillAmount` is bound to the `HealthPercentage` property.
+> - The `HealthBarFillImage.color` and `HealthValueText.color` change based on the health percentage.
+> - The `HealthValueText.text` is bound to the player's health and max health.
+
+> **This example is included within the asset**, and you can refer to it to see how multiple components can be bound to the same View. The `HealthBar` and `PlayerHealthView` classes are provided to help you understand how to work with bindings and UI components effectively.
