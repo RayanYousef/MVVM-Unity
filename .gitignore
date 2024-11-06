@@ -6,6 +6,7 @@
 /[Tt]emp/
 /[Oo]bj/
 /[Bb]uild/
+/[Bb]uildFullScreen/
 /[Bb]uilds/
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
@@ -70,3 +71,10 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+# Custom
+Assets/SceneDependencyCache*
+Assets/NetCodeGenerated*
+.idea/
+.DS_Store
+RiderScriptEditorPersistedState.asset

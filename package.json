@@ -1,19 +1,21 @@
 {
-  "name": "com.gitamend.unityutils",
-  "displayName": "Unity Utility Library",
-  "description": "Unity Utility Library, a growing collection of handy extension methods, helpers, attributes, and other utilities designed to enhance and simplify your Unity development workflow. Whether you're a seasoned developer or just starting, this library aims to provide tools that will help streamline your coding process and add efficiency to your projects.",
-  "version": "1.1.1",
+  "name": "com.adorable-assets.mvvm",
+  "displayName": "Adorable Assets",
+  "description": "MVVM system for Unity",
+  "version": "0.0.1",
   "keywords": [
-    "extension",
-    "attribute",
-    "inspector",
-    "editor"
+    "mvvm",
+    "unity3d",
+    "data-binding",
+    "ui",
+    "framework",
+    "patterns"
   ],
-  "category": "editor extensions",
+  "category": "frameworks",
   "dependencies": {},
   "author": {
-    "name": "Git Amend",
-    "url": "https://github.com/adammyhre"
+    "name": "MVVM Unity",
+    "url": "https://github.com/RayanYousef"
   },
-  "documentationUrl": "https://github.com/adammyhre/Unity-Utils/README.md"
+  "documentationUrl": "https://github.com/RayanYousef/MVVM-Unity/README.md"
 }
