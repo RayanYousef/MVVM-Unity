@@ -1,8 +1,8 @@
 ﻿
 
-<div align="center">
 # MVVM For Unity
-<img src="https://drive.google.com/file/d/1kfZoxRDHgjRGHnxWMXDGHTlXi96mkgVH/view?usp=drive_link"  height ="500" />
+<div align="center">
+<img src="https://drive.google.com/uc?export=view&id=1kfZoxRDHgjRGHnxWMXDGHTlXi96mkgVH"  height ="500" />
 </div>
 
 This framework provides a structured Model-View-ViewModel (MVVM) system for Unity, designed to separate your app’s data (Model), user interface (View), and business logic (ViewModel).
@@ -38,7 +38,9 @@ This MVVM framework provides base classes and interfaces to streamline setting u
 This MVVM framework provides flexibility in setting up `Model`, `ViewModel`, and `View` components. You can either:
 
 - **Extend the provided base classes** (`ViewModelBase` and `ViewBase<TViewModel>`) for a quick setup with built-in functionality.
-- **Or, implement the interfaces** (`IModel`, `IViewModel`, and `IView`) directly if you need more customization, though this requires implementing the details yourself.
+- **Or, implement the interfaces** (`IModel`, `IViewModel`, and `IView`) directly if you need more customization.
+
+> If you implement the interfaces, ensure correct implementation of the required interfaces to maintain seamless communication between the two components.
 
 ### Example: Setting Up a Simple Model
 
