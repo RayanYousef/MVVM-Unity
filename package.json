@@ -1,7 +1,7 @@
 {
-  "name": "com.adorable-assets.mvvm",
-  "displayName": "Adorable Assets",
-  "description": "MVVM system for Unity",
+  "name": "com.rayan.mvvm",
+  "displayName": "Rayan-MVVM",
+  "description": "A Model-View-ViewModel (MVVM) system for Unity. MVVM is a design pattern that separates the user interface (View) from the business logic (Model) via an intermediary (ViewModel). This package provides easy-to-use data binding between the Model and View, allowing for better separation of concerns, testability, and maintainability in your Unity projects.",
   "version": "0.0.1",
   "keywords": [
     "mvvm",
