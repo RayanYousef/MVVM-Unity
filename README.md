@@ -3,7 +3,7 @@
 <h1 align="center">MVVM For Unity</h1>
 
 <div align="center">
-<img src="https://drive.google.com/uc?export=view&id=1LuYfLu1Ld1xLVFvdDhWUCMY6-7NDSIIE"  height ="500" />
+<img src="https://drive.google.com/uc?export=view&id=1ZaXC9vltYbvy20McsXMXJOCWSJ4mBZll"  height ="500" />
 </div>
 
 This framework provides a structured Model-View-ViewModel (MVVM) system for Unity, designed to separate your app’s data (Model), user interface (View), and business logic (ViewModel).
@@ -114,7 +114,7 @@ public class PlayerHealthView : ViewBase<StatsViewModel>
 ```
 
 > In the Unity Editor, assign the **Image** component (or the GameObject containing the **Image** component) to the corresponding field. You can then bind it by using the **component name** and **type** with `ForComponent<Type>("Component Name", ...)`. 
-<img src="https://drive.google.com/uc?export=view&id=1wpoCLf3azw0pYYL0zabHwM_TiWhl8Ev3" style="display: inline-block;"/>
+<img src="https://drive.google.com/uc?export=view&id=1ohSnanA3sMA5oKkoyEjXkh_doIpLarEf" style="display: inline-block;"/>
 #### 2-Linking the View in Unity Editor
 
 *Refer to the images below* for step-by-step guidance on connecting the view components in the Unity Editor.
