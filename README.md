@@ -1,36 +1,48 @@
-﻿Here’s the updated usage guide incorporating all your points:
+﻿
 
----
+<div align="center">
+# MVVM For Unity
+<img src="https://drive.google.com/file/d/1kfZoxRDHgjRGHnxWMXDGHTlXi96mkgVH/view?usp=drive_link"  height ="500" />
+</div>
+
+This framework provides a structured Model-View-ViewModel (MVVM) system for Unity, designed to separate your app’s data (Model), user interface (View), and business logic (ViewModel).
+
+Model holds the data and notifies the ViewModel of any changes.
+ViewModel acts as an intermediary, exposing data and logic for the View without knowing any UI details.
+View binds to the ViewModel, ensuring the UI reflects the data from the Model in real-time.
+
+> **Limitations:** This system currently supports **One-Way Binding** only, meaning data flows from the Model to the View but cannot flow back from the View to the Model. Future updates will add Two-Way Binding for greater interactivity.
+
+## Dependencies
+No required dependencies
 
 ## Installation
 
 Add this package to your Unity project as a Git-based package:
 
 ```bash
-https://github.com/yourusername/AdorableAssets.MVVM.git
+https://github.com/RayanYousef/MVVM-Unity.git
 ```
 
-In Unity, navigate to **Window > Package Manager**, then select **+ > Add package from git URL…**, and paste the link above.
+Open Unity and go to **Window > Package Manager**, select **+ > Add package from git URL…**, and paste the link above.
+
 
 ## Usage Guide
 
-This MVVM framework provides base classes and interfaces to help you quickly set up models, views, and viewmodels in Unity. You can either:
-- **Extend the provided base classes** (`ViewModelBase` and `ViewBase<TViewModel>`) for a convenient setup with built-in functionality.
-- **Or, implement the interfaces** (`IModel`, `IViewModel`, and `IView`) directly if you need more control over your components, though you’ll need to implement the methods yourself.
-
-> **Note**: This system currently supports **One-Way Binding** only, meaning data flows from the model to the view but does not flow back from the view to the model. **Two-Way Binding support is planned for a future update.**
-
----
+This MVVM framework provides base classes and interfaces to streamline setting up a model-view-viewmodel architecture in Unity. You can either:
+- Extend the provided base classes for convenience.
+- Or, if you need more control, implement the interfaces directly.
 
 ### Step 1: Implementing Model, ViewModel, and View Classes
 
-1. **Model**: Implement the `IModel` interface to set up your data layer. Models manage data properties and notify listeners of changes.
-2. **ViewModel**: Extend `ViewModelBase` to simplify managing connections between models and views, or implement `IViewModel` if you prefer custom functionality.
-3. **View**: Create a class that extends `ViewBase<TViewModel>` to bind UI components to a `ViewModel`. Alternatively, implement `IView` directly for a fully customized setup.
+This MVVM framework provides flexibility in setting up `Model`, `ViewModel`, and `View` components. You can either:
+
+- **Extend the provided base classes** (`ViewModelBase` and `ViewBase<TViewModel>`) for a quick setup with built-in functionality.
+- **Or, implement the interfaces** (`IModel`, `IViewModel`, and `IView`) directly if you need more customization, though this requires implementing the details yourself.
 
 ### Example: Setting Up a Simple Model
 
-Here's an example of a basic `StatsModel`:
+To illustrate, here’s a basic `StatsModel` example:
 
 ```csharp
 using System;
@@ -60,9 +72,9 @@ namespace AdorableAssets.MVVM
 }
 ```
 
-This simple `StatsModel`:
+This simple `StatsModel` example:
 - Declares a `Health` property.
-- Raises the `OnPropertyUpdated` event when `Health` changes, enabling updates to be reflected in any bound views.
+- Raises the `OnPropertyUpdated` event when `Health` changes, ensuring updates can be reflected in the view.
 
 ### Step 2: Creating a ViewModel
 
@@ -81,7 +93,9 @@ To display data in Unity, create a `View` class by extending `ViewBase<TViewMode
 
 In your `View` class:
 1. Bind UI components to model properties.
-2. Register the view with a `ViewModel`, which automatically calls `BroadcastAllProperties()` on initialization, ensuring the UI is up-to-date.
+2. Link the View in Unity Editor.
+
+#### 1-Binding UI components to model properties.
 
 ```csharp
 public class PlayerHealthView : ViewBase<StatsViewModel>
@@ -89,19 +103,13 @@ public class PlayerHealthView : ViewBase<StatsViewModel>
     protected override void RegisterBindings()
     {
         BindingManager
-            .ForComponent<HealthBar>("PlayerHealthBar", healthBar => healthBar.HealthBarFillImage.fillAmount)
+            .ForComponent<Image>("HealthImage", healthImage => healthImage.fillAmount)
             .ToProperties("Health")
             .OneWay();
     }
 }
 ```
 
-### Linking the View in Unity Editor
+#### 2-Linking the View in Unity Editor
 
 *Refer to the images below* for step-by-step guidance on connecting the view components in the Unity Editor.
-
----
-
-This setup enables a flexible and decoupled UI framework for Unity, where each component has a clear responsibility. Two-Way Binding will be introduced in a future update for enhanced interactivity. 
-
-Let me know if you’d like any further adjustments!
