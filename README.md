@@ -1,4 +1,4 @@
-﻿Here's a simplified and clearer explanation for your README:
+﻿Here’s the updated usage guide incorporating all your points:
 
 ---
 
@@ -7,26 +7,30 @@
 Add this package to your Unity project as a Git-based package:
 
 ```bash
-https://github.com/RayanYousef/MVVM-Unity.git
+https://github.com/yourusername/AdorableAssets.MVVM.git
 ```
 
-Open Unity and go to **Window > Package Manager**, select **+ > Add package from git URL…**, and paste the link above.
+In Unity, navigate to **Window > Package Manager**, then select **+ > Add package from git URL…**, and paste the link above.
 
 ## Usage Guide
 
-### Step 1: Implementing Model, ViewModel, and View Classes
+This MVVM framework provides base classes and interfaces to help you quickly set up models, views, and viewmodels in Unity. You can either:
+- **Extend the provided base classes** (`ViewModelBase` and `ViewBase<TViewModel>`) for a convenient setup with built-in functionality.
+- **Or, implement the interfaces** (`IModel`, `IViewModel`, and `IView`) directly if you need more control over your components, though you’ll need to implement the methods yourself.
 
-This asset provides base classes and interfaces to help you quickly create an MVVM structure in Unity. 
-
-1. **Model**: Implement the `IModel` interface for your data layer. Models handle properties and notify listeners of changes.
-2. **ViewModel**: Extend `ViewModelBase` to provide logic that connects models to views.
-3. **View**: Extend `ViewBase<TViewModel>` to connect UI components to the `ViewModel`.
+> **Note**: This system currently supports **One-Way Binding** only, meaning data flows from the model to the view but does not flow back from the view to the model. **Two-Way Binding support is planned for a future update.**
 
 ---
 
+### Step 1: Implementing Model, ViewModel, and View Classes
+
+1. **Model**: Implement the `IModel` interface to set up your data layer. Models manage data properties and notify listeners of changes.
+2. **ViewModel**: Extend `ViewModelBase` to simplify managing connections between models and views, or implement `IViewModel` if you prefer custom functionality.
+3. **View**: Create a class that extends `ViewBase<TViewModel>` to bind UI components to a `ViewModel`. Alternatively, implement `IView` directly for a fully customized setup.
+
 ### Example: Setting Up a Simple Model
 
-To illustrate, here’s a basic `StatsModel` example:
+Here's an example of a basic `StatsModel`:
 
 ```csharp
 using System;
@@ -56,9 +60,9 @@ namespace AdorableAssets.MVVM
 }
 ```
 
-This simple `StatsModel` example:
+This simple `StatsModel`:
 - Declares a `Health` property.
-- Raises the `OnPropertyUpdated` event when `Health` changes, ensuring updates can be reflected in the view.
+- Raises the `OnPropertyUpdated` event when `Health` changes, enabling updates to be reflected in any bound views.
 
 ### Step 2: Creating a ViewModel
 
@@ -77,9 +81,7 @@ To display data in Unity, create a `View` class by extending `ViewBase<TViewMode
 
 In your `View` class:
 1. Bind UI components to model properties.
-2. Link the View in Unity Editor.
-
-#### 1-Binding UI components to model properties.
+2. Register the view with a `ViewModel`, which automatically calls `BroadcastAllProperties()` on initialization, ensuring the UI is up-to-date.
 
 ```csharp
 public class PlayerHealthView : ViewBase<StatsViewModel>
@@ -87,13 +89,19 @@ public class PlayerHealthView : ViewBase<StatsViewModel>
     protected override void RegisterBindings()
     {
         BindingManager
-            .ForComponent<Image>("HealthImage", healthImage => healthImage.fillAmount)
+            .ForComponent<HealthBar>("PlayerHealthBar", healthBar => healthBar.HealthBarFillImage.fillAmount)
             .ToProperties("Health")
             .OneWay();
     }
 }
 ```
 
-#### 2-Linking the View in Unity Editor
+### Linking the View in Unity Editor
 
 *Refer to the images below* for step-by-step guidance on connecting the view components in the Unity Editor.
+
+---
+
+This setup enables a flexible and decoupled UI framework for Unity, where each component has a clear responsibility. Two-Way Binding will be introduced in a future update for enhanced interactivity. 
+
+Let me know if you’d like any further adjustments!
