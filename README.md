@@ -79,7 +79,7 @@ In your `View` class:
 1. Bind UI components to model properties.
 2. Link the View in Unity Editor.
 
-### Binding UI components to model properties.
+#### 1-Binding UI components to model properties.
 
 ```csharp
 public class PlayerHealthView : ViewBase<StatsViewModel>
@@ -94,6 +94,6 @@ public class PlayerHealthView : ViewBase<StatsViewModel>
 }
 ```
 
-### Linking the View in Unity Editor
+#### 2-Linking the View in Unity Editor
 
 *Refer to the images below* for step-by-step guidance on connecting the view components in the Unity Editor.
