@@ -114,7 +114,7 @@ public class PlayerHealthView : ViewBase<StatsViewModel>
 ```
 
 > In the Unity Editor, assign the **Image** component (or the GameObject containing the **Image** component) to the corresponding field. You can then bind it by using the **component name** and **type** with `ForComponent<Type>("Component Name", ...)`. 
-<img src="https://drive.google.com/uc?export=view&id=1ohSnanA3sMA5oKkoyEjXkh_doIpLarEf" style="display: inline-block;"/>
+<img src="https://drive.google.com/uc?export=view&id=1ohSnanA3sMA5oKkoyEjXkh_doIpLarEf"  height ="200" style="display: inline-block;"/>
 #### 2-Linking the View in Unity Editor
 
 *Refer to the images below* for step-by-step guidance on connecting the view components in the Unity Editor.
