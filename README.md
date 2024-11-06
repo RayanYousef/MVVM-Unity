@@ -1,8 +1,9 @@
 ﻿
 
-# MVVM For Unity
+<h1 align="center">MVVM For Unity</h1>
+
 <div align="center">
-<img src="https://drive.google.com/uc?export=view&id=1kfZoxRDHgjRGHnxWMXDGHTlXi96mkgVH"  height ="500" />
+<img src="https://drive.google.com/file/d/1ZaXC9vltYbvy20McsXMXJOCWSJ4mBZll"  height ="500" />
 </div>
 
 This framework provides a structured Model-View-ViewModel (MVVM) system for Unity, designed to separate your app’s data (Model), user interface (View), and business logic (ViewModel).
@@ -40,7 +41,7 @@ This MVVM framework provides flexibility in setting up `Model`, `ViewModel`, and
 - **Extend the provided base classes** (`ViewModelBase` and `ViewBase<TViewModel>`) for a quick setup with built-in functionality.
 - **Or, implement the interfaces** (`IModel`, `IViewModel`, and `IView`) directly if you need more customization.
 
-> If you implement the interfaces, ensure correct implementation of the required interfaces to maintain seamless communication between the two components.
+> If you implement the interfaces, ensure correct implementation of the required interfaces to maintain seamless communication between the components.
 
 ### Example: Setting Up a Simple Model
 
@@ -97,7 +98,7 @@ In your `View` class:
 1. Bind UI components to model properties.
 2. Link the View in Unity Editor.
 
-#### 1-Binding UI components to model properties.
+#### 1. Binding UI Components to Model Properties
 
 ```csharp
 public class PlayerHealthView : ViewBase<StatsViewModel>
@@ -105,13 +106,14 @@ public class PlayerHealthView : ViewBase<StatsViewModel>
     protected override void RegisterBindings()
     {
         BindingManager
-            .ForComponent<Image>("HealthImage", healthImage => healthImage.fillAmount)
+            .ForComponent<Image>("HealthBarImage", healthBarImage => healthBarImage.fillAmount)
             .ToProperties("Health")
             .OneWay();
     }
 }
 ```
 
+> In the Unity Editor, assign the **Image** component (or the GameObject containing the **Image** component) to the corresponding field. You can then bind it by using the **component name** and **type** with `ForComponent<Type>("Component Name", ...)`. <img src="https://drive.google.com/file/d/1wpoCLf3azw0pYYL0zabHwM_TiWhl8Ev3" style="display: inline-block;"/>
 #### 2-Linking the View in Unity Editor
 
 *Refer to the images below* for step-by-step guidance on connecting the view components in the Unity Editor.
