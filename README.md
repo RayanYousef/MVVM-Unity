@@ -3,7 +3,7 @@
 <h1 align="center">MVVM For Unity</h1>
 
 <div align="center">
-<img src="https://drive.google.com/uc?export=view&id=1NpYULTYWvVSSfTDng0vkEqNDIBG4T1Xr"  height ="500" />
+<img src="https://drive.google.com/uc?export=view&id=1CqKV46T1OPKX7DQ6_XTbcNkiSwPpcfW4"  height ="500" />
 </div>
 
 This framework provides a structured Model-View-ViewModel (MVVM) system for Unity, designed to separate your app’s data (Model), user interface (View), and business logic (ViewModel).
@@ -112,7 +112,7 @@ public class PlayerHealthView : ViewBase<StatsViewModel>
 
 > In the Unity Editor, assign the **Image** component (or the GameObject containing the **Image** component) to the corresponding field. You can then bind it by using the **component name** and **type** with `ForComponent<Type>("Component Name", ...)`. 
 <div align="center">
-<img src="https://drive.google.com/uc?export=view&id=1ohSnanA3sMA5oKkoyEjXkh_doIpLarEf"  height ="500" style="display: inline-block;"/>
+<img src="https://drive.google.com/uc?export=view&id=1ohSnanA3sMA5oKkoyEjXkh_doIpLarEf"  height ="350" style="display: inline-block;"/>
 </div>
 
 #### 2. Binding Multiple Components to the Same View
